@@ -17,25 +17,10 @@ steps:
     commands:
       - sleep 5 # give docker enough time to start
       - docker ps -a
-      - docker build -t test:latest .
-      - docker image ls
-      - docker save test | gzip > test-image.tar.gz
 
   - name: LS-2
     image: alpine:3
     commands:
       - ls
-
-services:
-  - name: docker
-    image: docker:20.10.6-dind
-    privileged: true
-    volumes:
-      - name: dockersock
-        path: /var/run
-
-volumes:
-  - name: dockersock
-    temp: {}
   
   
